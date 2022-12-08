@@ -1,7 +1,10 @@
 <template>
   <v-app>
-    <Menu msg="Welcome to Your Vue.js App"/>
-    <Pie/>
+    <v-main>
+      <Menu/>
+      <router-view></router-view>
+      <Pie/>
+    </v-main>
   </v-app>
 </template>
 
@@ -11,20 +14,14 @@ import Pie from './components/Pie'
 
 export default {
   name: 'App',
+
   components: {
     Menu,
-    Pie
-  }
+    Pie,
+  },
+
+  data: () => ({
+    //
+  }),
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  
-}
-</style>
