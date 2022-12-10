@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar title="Application"></v-toolbar>
+  <v-toolbar title="Weather Company"></v-toolbar>
 </template>
 
 <script>
