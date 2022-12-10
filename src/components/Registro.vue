@@ -1,6 +1,5 @@
 <template>
-    
-    <v-container>
+        <v-container>
         <v-card height="500" >
         <v-card-title>Bienvenido</v-card-title>
         <v-form v-model="valid" ref="form">
@@ -37,28 +36,21 @@
             <v-col cols="8" offset="2">
                 <div class="d-flex justify-space-around align-center flex-column flex-md-row fill-height">
                     <v-btn color="primary" block @click="validate(email, contrasena)">
-                        Login
+                        Registrarse
                     </v-btn>
                 </div>
             </v-col>
         </v-row>
-        <v-row>
-          <v-col cols="4" offset="2" style="text-align: end; align-self: center;">
-            <p>Si no tiene cuenta, registresé</p>
-          </v-col>
-          <v-col cols="4" style="text-align: center;">
-            <v-btn color="primary" @click="register">Registrarse</v-btn>
-          </v-col>  
-        </v-row>
-    </v-form>
-    </v-card>
-    </v-container>
+        </v-form>
+        </v-card>
+        </v-container>
 </template>
 
 <script>
-  import { signInWithEmailAndPassword } from '@firebase/auth'
-  import { auth } from '../plugins/firebase';
-  export default {
+import { createUserWithEmailAndPassword } from '@firebase/auth'
+import { auth } from '../plugins/firebase'
+export default {
+    
     data: () => ({
       valid: false,
       email: '',
@@ -73,31 +65,28 @@
       ],
     }),
     methods:{
-        async validate (email, contrasena) {
-          const { valid } = await this.$refs.form.validate()
-  
-          if (valid){ 
-            signInWithEmailAndPassword(auth, email, contrasena)
-            .then((userCredential) => {
+      async validate (email, contrasena) {
+        const { valid } = await this.$refs.form.validate()
+
+        if (valid) { 
+          createUserWithEmailAndPassword(auth, email, contrasena)
+          .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            // ...
+            alert('Registro Exitoso')
             console.log(user)
-            alert('Login Exitoso')
-            console.log("Login Exitoso")
-            })
-            .catch((error) => {
+            console.log("Registro Exitoso")
+          })
+          .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            // ..
             console.log(errorCode)
             console.log(errorMessage)
-            });
-          }
-        },
-
-        register (){
-          this.$router.push('/registro')
+          })
         }
     }
   }
-  
+}
 </script>
