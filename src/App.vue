@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main style="min-height: 100vh; display: flex; flex-direction: column">
       <Menu/>
-      <router-view></router-view>
+      <router-view style="flex: 1"></router-view>
       <Pie/>
     </v-main>
   </v-app>

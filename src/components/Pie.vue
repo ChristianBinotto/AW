@@ -1,6 +1,11 @@
 <template>
     <v-footer
-    class="bg-indigo-lighten-1 text-center d-flex flex-column"
+    app
+    bottom
+    fixed
+    padless
+    class="text-center d-flex flex-column"
+    style="background-color: #6200EE"
   >
     <div>
       <v-btn
@@ -12,14 +17,14 @@
       ></v-btn>
     </div>
 
-    <div class="pt-0">
+    <div class="pt-0" style="color: #FFFFFF">
       Contamos con trabajadores capacitados de la mejor manera y tecnología utilizada de manera eficaz y eficiente para brindar
       un pronóstico acertado día a día.
     </div>
 
     <v-divider></v-divider>
 
-    <div>
+    <div style="color: #FFFFFF">
       {{ new Date().getFullYear()}} — <strong>Weather Company</strong>
     </div>
   </v-footer>

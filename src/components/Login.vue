@@ -1,8 +1,8 @@
 <template>
-    
+  <body style="background: url(https://okdiario.com/img/2021/10/16/inspiring-view-of-sunset-light.jpg)">
     <v-container>
         <v-card height="500" >
-        <v-card-title>Bienvenido</v-card-title>
+        <v-card-title>Bienvenido!!</v-card-title>
         <v-form v-model="valid" ref="form">
         <v-row>
             
@@ -15,19 +15,21 @@
             <v-text-field
                 v-model="email"
                 :rules="reglasEmail"
-                :counter="10"
                 label="Email"
+                prepend-inner-icon="mdi-email-outline"
                 validate-on="blur"
                 required
             ></v-text-field>
             
             <v-text-field
-                type="password"
+                :append-inner-icon="visible ? 'mdi-eye-off': 'mdi-eye'"
+                :type="visible ? 'text' : 'password'"
                 v-model="contrasena"
                 :rules="reglasContrasena"
-                :counter="10"
                 label="Contraseña"
+                prepend-inner-icon="mdi-lock-outline"
                 validate-on="blur"
+                @click:append-inner="visible = !visible"
                 required
             ></v-text-field>
             </v-col>
@@ -47,12 +49,13 @@
             <p>Si no tiene cuenta, registresé</p>
           </v-col>
           <v-col cols="4" style="text-align: center;">
-            <v-btn color="primary" @click="register">Registrarse</v-btn>
+            <v-btn color="primary" @click="registro">Registrarse</v-btn>
           </v-col>  
         </v-row>
     </v-form>
     </v-card>
     </v-container>
+  </body>
 </template>
 
 <script>
@@ -60,11 +63,12 @@
   import { auth } from '../plugins/firebase';
   export default {
     data: () => ({
+      visible: false,
       valid: false,
       email: '',
       reglasEmail: [
         v => !!v || 'Email es un campo requerido',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        v => /.+@.+\..+/.test(v) || 'E-mail debe ser valido',
       ],
       contrasena: '',
       reglasContrasena: [
@@ -82,20 +86,26 @@
             // Signed in 
             const user = userCredential.user;
             console.log(user)
+            this.logueado ()
             alert('Login Exitoso')
             console.log("Login Exitoso")
             })
             .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            alert("Usuario no existente, registresé")
             console.log(errorCode)
             console.log(errorMessage)
             });
           }
         },
 
-        register (){
+        registro (){
           this.$router.push('/registro')
+        },
+
+        logueado (){
+          this.$router.push('/inicio')
         }
     }
   }

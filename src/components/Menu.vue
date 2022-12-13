@@ -1,30 +1,20 @@
 <template>
-  <v-toolbar title="Weather Company"></v-toolbar>
+  <v-toolbar title="Weather Company">
+    <font-awesome-icon icon="fa-regular fa-sun" />
+  </v-toolbar>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+//   import 'font-awesome/css/font-awesome.min.css' // Ensure you are using css-loader
+//   import Vue from 'vue'
+//  // import Vuetify from 'vuetify/lib'
+
+//   Vue.use(Vuetify)
+
+//   export default new Vuetify({
+//     icons:{
+//       iconfont:"fa4"
+//     }
+//   })
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
